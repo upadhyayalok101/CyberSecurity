@@ -557,7 +557,6 @@ export API_KEY="your_key_here"
 echo $API_KEY
 source ~/.bashrc
 ```
-
 ---
 
 ## ⚙️ Bonus: DevOps Essentials
@@ -604,21 +603,6 @@ tar -czvf / -xzvf                # archives
 crontab -e                       # scheduling
 ```
 
----
-
-## 🎯 Practice Projects
-
-To reinforce learning, this repo includes (or plans to include) hands-on mini-projects:
-
-- [ ] **User & Permission Management Lab** – create users, groups, and set up role-based access
-- [ ] **Automated Backup Script** – shell script + cron job to back up and compress a directory daily
-- [ ] **Log Analyzer** – parse and summarize Apache/Nginx logs using `awk`/`grep`
-- [ ] **System Health Monitor** – script that emails/logs alerts on high CPU/disk/memory usage
-- [ ] **Simple Deployment Script** – automate pulling code, restarting a service, and health-checking
-- [ ] **Firewall Hardening Checklist** – documented `ufw`/`iptables` hardening steps
-
----
-
 ## 📚 Resources
 
 - [Linux Documentation Project](https://tldp.org)
@@ -639,12 +623,5 @@ Contributions, corrections, and suggestions are welcome!
 4. Push to the branch (`git push origin feature/topic`)
 5. Open a Pull Request
 
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — feel free to use it for learning or your own portfolio.
-
----
 
 ⭐ If this repo helped you, consider giving it a star — it helps others find it too!
