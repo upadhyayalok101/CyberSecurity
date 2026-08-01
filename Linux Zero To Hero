@@ -1,0 +1,650 @@
+
+# 🐧 Linux Zero to Hero
+
+): A complete, hands-on roadmap to mastering Linux — from your very first `ls` to writing shell scripts, managing servers, and automating DevOps workflows.
+
+First read the command and practice it from below resources
+
+Overthewire , Linux Foundation , Tryhackme , hackthebox That is enough to known 
+( Do not get trap into i will do all the command just start with one and complete it )
+
+
+---
+
+## 📌 About This Repository
+
+This repository is a structured, practical guide documenting my journey learning Linux — from absolute basics to advanced system administration and automation. It's built as a **reference + portfolio project** to demonstrate command-line proficiency, shell scripting ability, and Linux system administration skills.
+
+Each section includes:
+- ✅ Concept explanation
+- ✅ Essential commands with syntax
+- ✅ Real usage examples
+- ✅ Practice tasks
+
+---
+
+## 📖 Table of Contents
+
+1. [Getting Started](#-getting-started)
+2. [Level 1: Linux Basics](#-level-1-linux-basics)
+3. [Level 2: File & Directory Management](#-level-2-file--directory-management)
+4. [Level 3: File Permissions & Ownership](#-level-3-file-permissions--ownership)
+5. [Level 4: Users & Groups](#-level-4-users--groups)
+6. [Level 5: Process Management](#-level-5-process-management)
+7. [Level 6: Package Management](#-level-6-package-management)
+8. [Level 7: Networking](#-level-7-networking)
+9. [Level 8: Disk & Storage Management](#-level-8-disk--storage-management)
+10. [Level 9: Text Processing & Filters](#-level-9-text-processing--filters)
+11. [Level 10: Shell Scripting](#-level-10-shell-scripting)
+12. [Level 11: System Monitoring & Logs](#-level-11-system-monitoring--logs)
+13. [Level 12: Services & systemd](#-level-12-services--systemd)
+14. [Level 13: Archiving & Compression](#-level-13-archiving--compression)
+15. [Level 14: SSH & Remote Access](#-level-14-ssh--remote-access)
+16. [Level 15: Security & Firewall](#-level-15-security--firewall)
+17. [Level 16: Cron Jobs & Automation](#-level-16-cron-jobs--automation)
+18. [Level 17: Environment Variables](#-level-17-environment-variables)
+19. [Bonus: DevOps Essentials](#-bonus-devops-essentials)
+20. [Cheat Sheet Summary](#-cheat-sheet-summary)
+21. [Practice Projects](#-practice-projects)
+22. [Resources](#-resources)
+23. [Contributing](#-contributing)
+24. [License](#-license)
+
+---
+
+## 🚀 Getting Started
+
+### Recommended Setup
+- Install a Linux distribution (Ubuntu, Debian, Fedora, or Arch) via VM (VirtualBox/VMware) or WSL2 on Windows
+- Or use a cloud VM (AWS EC2 Free Tier, DigitalOcean Droplet, Oracle Cloud Free Tier)
+
+```bash
+# Check your Linux distribution and version
+cat /etc/os-release
+uname -a
+uname -r        # kernel version
+hostnamectl     # detailed system info
+```
+
+---
+
+## 🟢 Level 1: Linux Basics
+
+| Command | Description |
+|---|---|
+| `pwd` | Print current working directory |
+| `whoami` | Show current logged-in user |
+| `date` | Show current date and time |
+| `cal` | Show calendar |
+| `clear` | Clear the terminal screen |
+| `history` | Show command history |
+| `man <command>` | Manual page for a command |
+| `--help` | Quick help for a command |
+| `echo "text"` | Print text to terminal |
+| `exit` | Exit terminal/shell |
+| `reboot` | Restart the system |
+| `shutdown -h now` | Shut down the system |
+
+```bash
+whoami
+date
+history | tail -20
+man ls
+```
+
+---
+
+## 🟢 Level 2: File & Directory Management
+
+| Command | Description |
+|---|---|
+| `ls` | List files/directories |
+| `ls -l` | Long listing format |
+| `ls -a` | Show hidden files |
+| `ls -lh` | Human-readable file sizes |
+| `cd <path>` | Change directory |
+| `cd ..` | Go up one directory |
+| `cd ~` | Go to home directory |
+| `mkdir <dir>` | Create a directory |
+| `mkdir -p a/b/c` | Create nested directories |
+| `rmdir <dir>` | Remove empty directory |
+| `touch <file>` | Create empty file / update timestamp |
+| `cp <src> <dest>` | Copy file |
+| `cp -r <src> <dest>` | Copy directory recursively |
+| `mv <src> <dest>` | Move or rename file/dir |
+| `rm <file>` | Remove file |
+| `rm -r <dir>` | Remove directory recursively |
+| `rm -rf <dir>` | Force remove (⚠️ use with caution) |
+| `find <path> -name "*.txt"` | Search files by name |
+| `locate <file>` | Quickly locate files (needs `updatedb`) |
+| `tree` | Display directory structure as a tree |
+| `cat <file>` | Display file content |
+| `less <file>` | View file page by page |
+| `head -n 10 <file>` | First 10 lines of a file |
+| `tail -n 10 <file>` | Last 10 lines of a file |
+| `tail -f <file>` | Live tail (follow updates) |
+
+```bash
+mkdir -p projects/linux-zero-to-hero
+cd projects/linux-zero-to-hero
+touch notes.txt
+cp notes.txt notes_backup.txt
+find . -name "*.txt"
+tail -f /var/log/syslog
+```
+
+---
+
+## 🟢 Level 3: File Permissions & Ownership
+
+Linux permissions: `r` (read=4), `w` (write=2), `x` (execute=1) for **owner, group, others**.
+
+| Command | Description |
+|---|---|
+| `ls -l` | View permissions |
+| `chmod 755 file` | Set permissions numerically |
+| `chmod u+x file` | Add execute permission for owner |
+| `chmod g-w file` | Remove write permission for group |
+| `chmod -R 644 dir/` | Recursively change permissions |
+| `chown user file` | Change file owner |
+| `chown user:group file` | Change owner and group |
+| `chgrp group file` | Change group ownership |
+| `umask` | Show/set default permission mask |
+
+```bash
+chmod 755 script.sh          # rwxr-xr-x
+chmod +x deploy.sh           # make executable
+chown ubuntu:ubuntu app.log
+```
+
+**Permission reference:**
+```
+7 = rwx   6 = rw-   5 = r-x   4 = r--   0 = ---
+```
+
+---
+
+## 🟢 Level 4: Users & Groups
+
+| Command | Description |
+|---|---|
+| `whoami` | Current user |
+| `id` | User & group IDs |
+| `useradd <name>` | Add a new user |
+| `useradd -m <name>` | Add user with home directory |
+| `passwd <name>` | Set/change password |
+| `userdel <name>` | Delete a user |
+| `userdel -r <name>` | Delete user and home directory |
+| `usermod -aG <group> <name>` | Add user to a group |
+| `groupadd <name>` | Create a new group |
+| `groupdel <name>` | Delete a group |
+| `groups <name>` | Show groups of a user |
+| `su <name>` | Switch user |
+| `sudo <command>` | Run command as root |
+| `sudo -i` | Root shell |
+| `cat /etc/passwd` | List all users |
+| `cat /etc/group` | List all groups |
+
+```bash
+sudo useradd -m devops
+sudo passwd devops
+sudo usermod -aG sudo devops
+```
+
+---
+
+## 🟢 Level 5: Process Management
+
+| Command | Description |
+|---|---|
+| `ps` | Show running processes |
+| `ps aux` | Detailed list of all processes |
+| `top` | Real-time process monitor |
+| `htop` | Interactive process viewer (enhanced top) |
+| `kill <PID>` | Terminate process by ID |
+| `kill -9 <PID>` | Force kill a process |
+| `killall <name>` | Kill process by name |
+| `pkill <name>` | Kill process matching name |
+| `jobs` | List background jobs |
+| `bg` | Resume job in background |
+| `fg` | Bring job to foreground |
+| `nohup <command> &` | Run command immune to hangups |
+| `command &` | Run process in background |
+| `Ctrl + Z` | Suspend running process |
+| `nice -n 10 <command>` | Run with lower priority |
+| `renice 10 -p <PID>` | Change priority of running process |
+
+```bash
+ps aux | grep nginx
+kill -9 1234
+top
+nohup python3 server.py &
+```
+
+---
+
+## 🟢 Level 6: Package Management
+
+**Debian/Ubuntu (APT):**
+```bash
+sudo apt update                  # refresh package index
+sudo apt upgrade                 # upgrade installed packages
+sudo apt install <package>       # install a package
+sudo apt remove <package>        # remove a package
+sudo apt purge <package>         # remove including config files
+sudo apt autoremove              # remove unused dependencies
+apt search <package>             # search for a package
+apt list --installed             # list installed packages
+```
+
+**RedHat/CentOS/Fedora (YUM/DNF):**
+```bash
+sudo yum install <package>
+sudo dnf install <package>
+sudo dnf update
+sudo dnf remove <package>
+```
+
+**Arch Linux (Pacman):**
+```bash
+sudo pacman -S <package>
+sudo pacman -Syu
+sudo pacman -R <package>
+```
+
+**Snap / Flatpak:**
+```bash
+sudo snap install <package>
+flatpak install <package>
+```
+
+---
+
+## 🟢 Level 7: Networking
+
+| Command | Description |
+|---|---|
+| `ip a` / `ifconfig` | Show network interfaces |
+| `ping <host>` | Test connectivity |
+| `curl <url>` | Transfer data from/to a server |
+| `wget <url>` | Download files |
+| `netstat -tulnp` | Show listening ports |
+| `ss -tulnp` | Modern alternative to netstat |
+| `traceroute <host>` | Trace network path |
+| `nslookup <domain>` | DNS lookup |
+| `dig <domain>` | Detailed DNS query |
+| `hostname` | Show system hostname |
+| `hostname -I` | Show IP address |
+| `scp file user@host:/path` | Secure copy over network |
+| `rsync -avz src/ dest/` | Sync files/directories |
+| `nmcli` | Manage network connections |
+| `ufw status` | Check firewall status |
+
+```bash
+ping -c 4 google.com
+curl -I https://example.com
+ss -tulnp
+scp report.pdf user@192.168.1.10:/home/user/
+rsync -avz ./project/ user@server:/var/www/project/
+```
+
+---
+
+## 🟢 Level 8: Disk & Storage Management
+
+| Command | Description |
+|---|---|
+| `df -h` | Disk space usage (human-readable) |
+| `du -sh <dir>` | Directory size |
+| `du -sh * \| sort -rh` | Sort files/folders by size |
+| `mount /dev/sdX /mnt` | Mount a filesystem |
+| `umount /mnt` | Unmount a filesystem |
+| `lsblk` | List block devices |
+| `fdisk -l` | List disk partitions |
+| `mkfs.ext4 /dev/sdX1` | Format partition as ext4 |
+| `blkid` | Show UUIDs of devices |
+| `fsck /dev/sdX1` | Check/repair filesystem |
+
+```bash
+df -h
+du -sh /var/log
+lsblk
+sudo mount /dev/sdb1 /mnt/data
+```
+
+---
+
+## 🟢 Level 9: Text Processing & Filters
+
+| Command | Description |
+|---|---|
+| `grep "pattern" file` | Search text pattern |
+| `grep -r "pattern" dir/` | Recursive search |
+| `grep -i "pattern" file` | Case-insensitive search |
+| `sed 's/old/new/g' file` | Find & replace text |
+| `awk '{print $1}' file` | Pattern scanning/processing |
+| `sort file` | Sort lines |
+| `sort -r file` | Reverse sort |
+| `uniq file` | Remove duplicate lines |
+| `wc -l file` | Count lines |
+| `wc -w file` | Count words |
+| `cut -d',' -f1 file` | Extract columns |
+| `tr 'a-z' 'A-Z'` | Translate characters |
+| `diff file1 file2` | Compare two files |
+| `xargs` | Build command from input |
+
+```bash
+grep -ri "error" /var/log/syslog
+cat access.log | awk '{print $1}' | sort | uniq -c | sort -rn
+sed -i 's/foo/bar/g' config.txt
+find . -name "*.log" | xargs rm
+```
+
+---
+
+## 🟡 Level 10: Shell Scripting
+
+```bash
+#!/bin/bash
+# my_first_script.sh
+
+echo "Enter your name:"
+read name
+echo "Hello, $name! Welcome to Linux scripting."
+
+# Variables
+count=5
+
+# If condition
+if [ $count -gt 3 ]; then
+  echo "Count is greater than 3"
+fi
+
+# Loop
+for i in {1..5}; do
+  echo "Iteration: $i"
+done
+
+# While loop
+n=0
+while [ $n -lt 3 ]; do
+  echo "n = $n"
+  ((n++))
+done
+
+# Function
+greet() {
+  echo "Hello, $1!"
+}
+greet "DevOps"
+```
+
+**Key concepts & commands:**
+```bash
+chmod +x script.sh && ./script.sh   # make executable & run
+bash script.sh                      # run without chmod
+$0, $1, $2 ...                      # script name & arguments
+$#                                   # number of arguments
+$@                                   # all arguments
+$?                                   # exit status of last command
+exit 0                              # exit script with success code
+```
+
+---
+
+## 🟡 Level 11: System Monitoring & Logs
+
+| Command | Description |
+|---|---|
+| `top` / `htop` | Live resource monitoring |
+| `free -h` | Memory usage |
+| `vmstat` | Virtual memory stats |
+| `iostat` | CPU & I/O statistics |
+| `uptime` | System uptime & load average |
+| `dmesg` | Kernel ring buffer messages |
+| `journalctl` | Query systemd logs |
+| `journalctl -u <service>` | Logs for a specific service |
+| `journalctl -f` | Follow logs live |
+| `/var/log/syslog` | General system log (Debian) |
+| `/var/log/messages` | General system log (RHEL) |
+| `who` | Show logged-in users |
+| `w` | Detailed logged-in user activity |
+| `last` | Login history |
+
+```bash
+free -h
+uptime
+journalctl -u nginx --since "1 hour ago"
+dmesg | tail -20
+```
+
+---
+
+## 🟡 Level 12: Services & systemd
+
+| Command | Description |
+|---|---|
+| `systemctl status <service>` | Check service status |
+| `systemctl start <service>` | Start a service |
+| `systemctl stop <service>` | Stop a service |
+| `systemctl restart <service>` | Restart a service |
+| `systemctl reload <service>` | Reload config without restart |
+| `systemctl enable <service>` | Enable service at boot |
+| `systemctl disable <service>` | Disable service at boot |
+| `systemctl list-units --type=service` | List all services |
+| `systemctl daemon-reload` | Reload systemd manager config |
+
+```bash
+sudo systemctl status nginx
+sudo systemctl enable --now docker
+sudo systemctl restart ssh
+```
+
+---
+
+## 🟡 Level 13: Archiving & Compression
+
+| Command | Description |
+|---|---|
+| `tar -cvf archive.tar dir/` | Create a tar archive |
+| `tar -xvf archive.tar` | Extract a tar archive |
+| `tar -czvf archive.tar.gz dir/` | Create gzip-compressed archive |
+| `tar -xzvf archive.tar.gz` | Extract gzip archive |
+| `zip -r archive.zip dir/` | Create a zip archive |
+| `unzip archive.zip` | Extract a zip archive |
+| `gzip file` | Compress a file |
+| `gunzip file.gz` | Decompress a file |
+
+```bash
+tar -czvf backup_$(date +%F).tar.gz /home/user/project
+tar -xzvf backup_2026-08-01.tar.gz -C /restore/path
+```
+
+---
+
+## 🟡 Level 14: SSH & Remote Access
+
+| Command | Description |
+|---|---|
+| `ssh user@host` | Connect to remote server |
+| `ssh -p 2222 user@host` | Connect via custom port |
+| `ssh-keygen -t ed25519` | Generate SSH key pair |
+| `ssh-copy-id user@host` | Copy public key to server |
+| `scp file user@host:/path` | Secure file copy |
+| `sftp user@host` | Secure FTP session |
+| `~/.ssh/config` | SSH client config file |
+| `ssh-agent bash` | Start SSH agent |
+| `ssh-add ~/.ssh/id_ed25519` | Add key to agent |
+
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-copy-id user@192.168.1.10
+ssh -i ~/.ssh/id_ed25519 user@server.com
+```
+
+---
+
+## 🔴 Level 15: Security & Firewall
+
+| Command | Description |
+|---|---|
+| `ufw enable` | Enable firewall (Ubuntu) |
+| `ufw allow 22` | Allow port 22 (SSH) |
+| `ufw deny 80` | Block port 80 |
+| `ufw status verbose` | View firewall rules |
+| `firewall-cmd --list-all` | View firewall rules (RHEL) |
+| `iptables -L` | List iptables rules |
+| `fail2ban-client status` | Check fail2ban status |
+| `chage -l <user>` | Password expiry info |
+| `sudo visudo` | Edit sudoers file safely |
+| `openssl` | Cryptography toolkit |
+
+```bash
+sudo ufw allow OpenSSH
+sudo ufw enable
+sudo ufw status verbose
+```
+
+---
+
+## 🔴 Level 16: Cron Jobs & Automation
+
+| Command | Description |
+|---|---|
+| `crontab -e` | Edit user's cron jobs |
+| `crontab -l` | List cron jobs |
+| `crontab -r` | Remove all cron jobs |
+| `/etc/crontab` | System-wide cron table |
+| `at <time>` | Schedule a one-time task |
+
+**Cron syntax:**
+```
+*  *  *  *  *  command
+│  │  │  │  │
+│  │  │  │  └── day of week (0-6)
+│  │  │  └───── month (1-12)
+│  │  └──────── day of month (1-31)
+│  └─────────── hour (0-23)
+└────────────── minute (0-59)
+```
+
+```bash
+# Run backup script every day at 2:30 AM
+30 2 * * * /home/user/scripts/backup.sh
+
+# Run every 5 minutes
+*/5 * * * * /home/user/scripts/healthcheck.sh
+```
+
+---
+
+## 🔴 Level 17: Environment Variables
+
+| Command | Description |
+|---|---|
+| `env` | List environment variables |
+| `printenv` | Print environment variables |
+| `echo $PATH` | Show PATH variable |
+| `export VAR=value` | Set an environment variable |
+| `unset VAR` | Remove a variable |
+| `~/.bashrc` | Per-user shell config |
+| `~/.bash_profile` | Login shell config |
+| `/etc/environment` | System-wide variables |
+| `source ~/.bashrc` | Reload shell config |
+
+```bash
+export API_KEY="your_key_here"
+echo $API_KEY
+source ~/.bashrc
+```
+
+---
+
+## ⚙️ Bonus: DevOps Essentials
+
+```bash
+# Git basics
+git clone <repo-url>
+git status
+git add . && git commit -m "message"
+git push origin main
+
+# Docker basics
+docker ps
+docker images
+docker run -d -p 8080:80 nginx
+docker exec -it <container_id> bash
+docker-compose up -d
+
+# Check open ports & running services quickly
+sudo lsof -i -P -n | grep LISTEN
+
+# Monitor disk I/O
+iotop
+
+# Check system architecture
+lscpu
+```
+
+---
+
+## 📋 Cheat Sheet Summary
+
+```bash
+# Quick reference - most used commands
+pwd; ls -la; cd path            # navigation
+mkdir, touch, cp, mv, rm         # file ops
+chmod, chown                     # permissions
+ps aux, top, kill                # processes
+grep, sed, awk, find             # text/search
+df -h, du -sh                    # disk usage
+systemctl status/start/stop      # services
+ssh, scp, rsync                  # remote access
+tar -czvf / -xzvf                # archives
+crontab -e                       # scheduling
+```
+
+---
+
+## 🎯 Practice Projects
+
+To reinforce learning, this repo includes (or plans to include) hands-on mini-projects:
+
+- [ ] **User & Permission Management Lab** – create users, groups, and set up role-based access
+- [ ] **Automated Backup Script** – shell script + cron job to back up and compress a directory daily
+- [ ] **Log Analyzer** – parse and summarize Apache/Nginx logs using `awk`/`grep`
+- [ ] **System Health Monitor** – script that emails/logs alerts on high CPU/disk/memory usage
+- [ ] **Simple Deployment Script** – automate pulling code, restarting a service, and health-checking
+- [ ] **Firewall Hardening Checklist** – documented `ufw`/`iptables` hardening steps
+
+---
+
+## 📚 Resources
+
+- [Linux Documentation Project](https://tldp.org)
+- [The Linux Command Line (book) — William Shotts](https://linuxcommand.org/tlcl.php)
+- [Explainshell](https://explainshell.com) – breaks down any shell command
+- [OverTheWire: Bandit](https://overthewire.org/wargames/bandit/) – Linux CLI practice wargame
+- [Arch Wiki](https://wiki.archlinux.org) – excellent even for non-Arch users
+
+---
+
+## 🤝 Contributing
+
+Contributions, corrections, and suggestions are welcome!
+
+1. Fork this repository
+2. Create a new branch (`git checkout -b feature/topic`)
+3. Commit your changes (`git commit -m "Add: new topic"`)
+4. Push to the branch (`git push origin feature/topic`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — feel free to use it for learning or your own portfolio.
+
+---
+
+⭐ If this repo helped you, consider giving it a star — it helps others find it too!
