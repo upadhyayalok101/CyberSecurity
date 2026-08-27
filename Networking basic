@@ -1,0 +1,47 @@
+Comptia network+  (Professor messer)
+https://www.youtube.com/watch?v=As6g6IXcVa4&list=PLG49S3nxzAnlCJiCrOYuRYb6cne864a7G
+
+Comptia network+    (Professor messer)
+https://www.youtube.com/playlist?list=PLG49S3nxzAnl4QDVqK-hOnoqcSKEIDDuv
+
+In this Video you will learn about
+OSI Model
+TCP/UDP , 
+
+HOW DATA IS ENCAPSULATED IN PACKET ; 
+TYPES of flag ,
+SYN Synchronise ,
+PSH Push ,
+RST Reset ,
+FIN Finish ,
+
+Data Communication MTU Maximum Transmision unit
+maximium byte supported by ethernet is 1500 byte
+ping -f 
+
+Network Topology 
+MANs
+WANs
+Mesh ,hybrid ,star wireless topology(AP)
+
+Network types : Peer to peer , Client Server , client to client
+LAN + MAN + WAN , Wreless LAN (AP)
+
+NAS Vs SAN 
+Network attach storage 
+- connnect to shared storage device across the network 
+- File level acccess
+
+Storage area network 
+Block level storage 
+Very Efficient reading and writing 
+
+MPLS  Pushing and popping
+mGRE Multipoint Generic Route Encapsulation 
+- Dynamic multipoint VPN (DMVPN)
+- Common on cisco router
+
+SD-Wan software defined networking in a wide Area Network 
+-A Wan build for cloud
+
+view video playlist to continue and make your notes to understand more clearly
